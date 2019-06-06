@@ -20,9 +20,26 @@ namespace Maze
     /// </summary>
     public partial class MainWindow : Window
     {
+        public GameSession gameSession;
         public MainWindow()
         {
             InitializeComponent();
+            gameSession = new GameSession();
+
+            DataContext = gameSession;
+
+        }
+
+        private void NailSlider_Click(object sender, RoutedEventArgs e)
+        {
+            int index = Convert.ToInt16((sender as Button).Tag);
+            gameSession.MoveNail(index);
+        }
+
+        private void Slider_Click(object sender, RoutedEventArgs e)
+        {
+            int index = Convert.ToInt16((sender as Button).Tag);
+            gameSession.MoveSlider(index);
         }
     }
 }
