@@ -54,7 +54,7 @@ namespace Maze
 
         public int GetMap(int x, int y)
         {
-            if (x<0 || y<0 ||x>=7 || y>=19 )
+            if (x<0 || y<0 ||x>=7 || y>=21 )
             {
                 return 1;
             } else

@@ -7,7 +7,7 @@ namespace Maze
     public class GameSession: BaseNotification
     {
 
-        int[,] s1 = new int[19, 7] { { 0, 0, 0, 0, 0, 0, 0 },
+        int[,] s1 = new int[21, 7] { { 0, 0, 0, 0, 0, 0, 0 },
                                     { 0, 1,1,1,1,1,0 },
                                     { 0, 1,0,0,0,1,0 },
                                     { 0, 1,1,1,0,1,0 },
@@ -25,8 +25,10 @@ namespace Maze
                                     { 0, 1,1,1,0,1,0 },
                                     { 0, 1,0,1,0,1,0 },
                                     { 0, 1,0,1,0,1,0 },
+                                    { 0, 0,0,0,0,0,0 },
+                                    { 0, 0,0,0,0,0,0 },
                                     { 0, 0,0,0,0,0,0 } };
-        int[,] s2 = new int[22, 7] { { 0, 0, 0, 0, 0, 0, 0 },
+        int[,] s2 = new int[21, 7] { { 0, 0, 0, 0, 0, 0, 0 },
                                     { 0, 1,0,1,1,1,0 },
                                     { 0, 1,0,1,0,1,0 },
                                     { 0, 1,1,1,0,1,0 },
@@ -44,7 +46,6 @@ namespace Maze
                                     { 0, 1,1,1,0,1,0 },
                                     { 0, 0,0,0,0,1,0 },
                                     { 0, 1,1,1,1,1,0 },
-                                    { 0, 1,0,0,0,0,0 },
                                     { 0, 1,0,0,0,0,0 },
                                     { 0, 1,0,0,0,0,0 },
                                     { 0, 1,0,0,0,0,0 } };
@@ -53,6 +54,17 @@ namespace Maze
         public Slider Slider1 { get; set; }
         public Slider Slider2 { get; set; }
         public List<Nail> Nails { get; set; } = new List<Nail>();
+        private int _moveCount;
+
+        public int MoveCount
+        {
+            get { return _moveCount; }
+            set
+            {
+                _moveCount = value;
+                OnPropertyChanged(nameof(MoveCount));
+            }
+        }
 
         public bool CanS1Up
         {
@@ -144,6 +156,7 @@ namespace Maze
             }
         }
 
+        public bool HasWon => Slider2.Pos > 16;
 
         private void UpdateButtons()
         {
@@ -157,6 +170,7 @@ namespace Maze
             OnPropertyChanged(nameof(CanN0Right));
             OnPropertyChanged(nameof(CanN1Right));
             OnPropertyChanged(nameof(CanN2Right));
+            OnPropertyChanged(nameof(HasWon));
         }
 
         public GameSession()
@@ -174,6 +188,7 @@ namespace Maze
 
         internal void MoveNail(int index)
         {
+            MoveCount++;
             if (index < 3)
             {
                 Nails[index].Move(-1);
@@ -188,6 +203,7 @@ namespace Maze
 
         internal void MoveSlider(int index)
         {
+            MoveCount++;
             switch (index)
             {
                 case 0:

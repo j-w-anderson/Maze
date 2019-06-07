@@ -333,7 +333,7 @@
                     </LinearGradientBrush>
                 </Button.BorderBrush>
             </Button>
-            
+
             <Button Content="5" FontFamily="Marlett" FontSize="24"
                     Canvas.Top="90" Canvas.Left="75"
                     Width="30" Height="30" Background="#FF959191"
@@ -382,6 +382,24 @@
                     </LinearGradientBrush>
                 </Button.BorderBrush>
             </Button>
+            <Label HorizontalContentAlignment="Right" Content="{Binding MoveCount}" Canvas.Left="116" Canvas.Top="546" Width="196" Foreground="White" FontSize="18"/>
+            <TextBox Canvas.Top="250" Canvas.Right="20"
+                     Visibility="{Binding HasWon, Converter={StaticResource ButtonToVisibility}}"
+                     HorizontalContentAlignment="Center" 
+                     Text="You Win!!&#xD;&#xA;Total Moves:" 
+                     HorizontalAlignment="Left"  VerticalAlignment="Top"  
+                     Height="60"  Width="120" 
+                     Foreground="White"  Background="{x:Null}"  BorderBrush="{x:Null}"
+                     FontSize="20" />
+            <Label Canvas.Top="300" Canvas.Right="20" 
+                   Content="{Binding MoveCount}"
+                   Visibility="{Binding HasWon, Converter={StaticResource ButtonToVisibility}}"
+                   HorizontalContentAlignment="Center" VerticalContentAlignment="Top" 
+                   HorizontalAlignment="Left" 
+                   Height="40"  Width="120" 
+                   Foreground="White" FontSize="20" Background="{x:Null}" BorderBrush="{x:Null}"/>
+
+
         </Canvas>
 
     </Grid>
